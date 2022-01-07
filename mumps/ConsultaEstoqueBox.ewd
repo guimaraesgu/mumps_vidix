@@ -1,0 +1,248 @@
+<ewd:config isFirstPage="False" mgwsiServer="gtm" prePageScript="init^webConsultaEstoqueBox">
+<html>
+<head>
+<script type="text/javascript" src="/resources/svg.js"></script>
+<script type="text/javascript" src="/resources/extraJSFunctions.js"></script>
+</head>
+<body>
+	<div id="content">
+		<div id="titulo">Consulta Estoque Box</div>
+		<div class="main_Box">
+			<div class="cor_Box">
+				<div class="cor_Title">
+					<span class="title_ConsEstBox">Incolor</span>
+				</div>
+				<div class="tipo_Box">
+					<div class="tipo_Box_Title">
+						<span class="title_ConsEstBox">Porta</span>
+					</div>
+					<ewd:forEach sessionName="portaIncArray" index="$rowId" return="$portaIncData">
+						<ewd:getSessionArrayValue sessionName="portaIncArray" param1="$rowId" param2="1" return="$portaIncEstData">
+						<ewd:getSessionArrayValue sessionName="portaIncArray" param1="$rowId" param2="2" return="$portaIncResData">
+						<ewd:getSessionArrayValue sessionName="portaIncArray" param1="$rowId" param2="3" return="$portaIncEmPData">
+						<div class="tam_Box larg_box_<?=$portaIncData?>">
+							<div id="tam_Inc_Porta_<?=$portaIncData?>" class="tam_Box_Box" onClick="switchRsvTrans('Inc','Porta',<?=$portaIncData?>);">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$portaIncData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Est">
+									<span>EM ESTOQUE:</span><span><?=$portaIncEstData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Res">
+									<span>RESERVADO:</span>
+									<span class="reserv_larg_box reserv_larg_box_<?=$portaIncData?>"><?=$portaIncResData?></span>
+								</div>
+								<div class="tam_Box_Qnt_EmP">
+									<span>EM PRODUCAO:</span><span><?=$portaIncEmPData?></span>
+								</div>
+							</div>
+							<div id="etqRsv_Inc_Porta_<?=$portaIncData?>" class="etqRsv_Box larg_box_<?=$portaIncData?>">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$portaIncData?></span>
+								</div>
+							<ewd:forEach sessionName="portaIncArray" param1="$rowId" param2="2" index="$rowId2" return="$codPedRsv">
+								<ewd:forEach sessionName="portaIncArray" param1="$rowId" param2="2" param3="$rowId2" index="$rowId3" return="$etqRsv">
+									<span class="etqRsvNum"><?=$codPedRsv?> - <?=$etqRsv?></span>
+								</ewd:forEach>
+							</ewd:forEach>
+							</div>
+						</div>
+					</ewd:forEach>
+				</div>
+					<div class="tipo_Box">
+					<div class="tipo_Box_Title">
+						<span class="title_ConsEstBox">Fixo</span>
+					</div>
+					<ewd:forEach sessionName="fixoIncArray" index="$rowId" return="$fixoIncData">
+						<ewd:getSessionArrayValue sessionName="fixoIncArray" param1="$rowId" param2="1" return="$fixoIncEstData">
+						<ewd:getSessionArrayValue sessionName="fixoIncArray" param1="$rowId" param2="2" return="$fixoIncResData">
+						<ewd:getSessionArrayValue sessionName="fixoIncArray" param1="$rowId" param2="3" return="$fixoIncEmPData">
+						<div class="tam_Box larg_box_<?=$fixoIncData?>">
+							<div id="tam_Inc_Fixo_<?=$fixoIncData?>" class="tam_Box_Box" onClick="switchRsvTrans('Inc','Fixo',<?=$fixoIncData?>);">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$fixoIncData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Est">
+									<span>EM ESTOQUE:</span><span><?=$fixoIncEstData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Res">
+									<span>RESERVADO:</span><span><?=$fixoIncResData?></span>
+								</div>
+								<div class="tam_Box_Qnt_EmP">
+									<span>EM PRODUCAO:</span><span><?=$fixoIncEmPData?></span>
+								</div>
+							</div>
+							<div id="etqRsv_Inc_Fixo_<?=$fixoIncData?>" class="etqRsv_Box larg_box_<?=$fixoIncData?>">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$fixoIncData?></span>
+								</div>
+							<ewd:forEach sessionName="fixoIncArray" param1="$rowId" param2="2" index="$rowId2" return="$codPedRsv">
+								<ewd:forEach sessionName="fixoIncArray" param1="$rowId" param2="2" param3="$rowId2" index="$rowId3" return="$etqRsv">
+									<span class="etqRsvNum"><?=$codPedRsv?> - <?=$etqRsv?></span>
+								</ewd:forEach>
+							</ewd:forEach>
+							</div>
+						</div>
+					</ewd:forEach>
+				</div>
+			</div>
+
+			<div class="cor_Box">
+				<div class="cor_Title">
+					<span class="title_ConsEstBox">Cinza</span>
+				</div>
+				<div class="tipo_Box">
+					<div class="tipo_Box_Title">
+						<span class="title_ConsEstBox">Porta</span>
+					</div>
+					<ewd:forEach sessionName="portaCinzaArray" index="$rowId" return="$portaCinzaData">
+						<ewd:getSessionArrayValue sessionName="portaCinzaArray" param1="$rowId" param2="1" return="$portaCinzaEstData">
+						<ewd:getSessionArrayValue sessionName="portaCinzaArray" param1="$rowId" param2="2" return="$portaCinzaResData">
+						<ewd:getSessionArrayValue sessionName="portaCinzaArray" param1="$rowId" param2="3" return="$portaCinzaEmPData">
+						<div class="tam_Box larg_box_<?=$portaCinzaData?>">
+							<div id="tam_Cinza_Porta_<?=$portaCinzaData?>" class="tam_Box_Box" onClick="switchRsvTrans('Cinza','Porta',<?=$portaCinzaData?>);">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$portaCinzaData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Est">
+									<span>EM ESTOQUE:</span><span><?=$portaCinzaEstData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Res">
+									<span>RESERVADO:</span><span><?=$portaCinzaResData?></span>
+								</div>
+								<div class="tam_Box_Qnt_EmP">
+									<span>EM PRODUCAO:</span><span><?=$portaCinzaEmPData?></span>
+								</div>
+							</div>
+							<div id="etqRsv_Cinza_Porta_<?=$portaCinzaData?>" class="etqRsv_Box larg_box_<?=$portaCinzaData?>">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$portaCinzaData?></span>
+								</div>
+							<ewd:forEach sessionName="portaCinzaArray" param1="$rowId" param2="2" index="$rowId2" return="$codPedRsv">
+								<ewd:forEach sessionName="portaCinzaArray" param1="$rowId" param2="2" param3="$rowId2" index="$rowId3" return="$etqRsv">
+									<span class="etqRsvNum"><?=$codPedRsv?> - <?=$etqRsv?></span>
+								</ewd:forEach>
+							</ewd:forEach>
+							</div>
+						</div>
+					</ewd:forEach>
+				</div>
+				<div class="tipo_Box">
+					<div class="tipo_Box_Title">
+						<span class="title_ConsEstBox">Fixo</span>
+					</div>
+					<ewd:forEach sessionName="fixoCinzaArray" index="$rowId" return="$fixoCinzaData">
+						<ewd:getSessionArrayValue sessionName="fixoCinzaArray" param1="$rowId" param2="1" return="$fixoCinzaEstData">
+						<ewd:getSessionArrayValue sessionName="fixoCinzaArray" param1="$rowId" param2="2" return="$fixoCinzaResData">
+						<ewd:getSessionArrayValue sessionName="fixoCinzaArray" param1="$rowId" param2="3" return="$fixoCinzaEmPData">
+						<div class="tam_Box larg_box_<?=$fixoCinzaData?>">
+							<div id="tam_Cinza_Fixo_<?=$fixoCinzaData?>" class="tam_Box_Box" onClick="switchRsvTrans('Cinza','Fixo',<?=$fixoCinzaData?>);">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$fixoCinzaData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Est">
+									<span>EM ESTOQUE:</span><span><?=$fixoCinzaEstData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Res">
+									<span>RESERVADO:</span><span><?=$fixoCinzaResData?></span>
+								</div>
+								<div class="tam_Box_Qnt_EmP">
+									<span>EM PRODUCAO:</span><span><?=$fixoCinzaEmPData?></span>
+								</div>
+							</div>
+							<div id="etqRsv_Cinza_Fixo_<?=$fixoCinzaData?>" class="etqRsv_Box larg_box_<?=$fixoCinzaData?>">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$fixoCinzaData?></span>
+								</div>
+							<ewd:forEach sessionName="fixoCinzaArray" param1="$rowId" param2="2" index="$rowId2" return="$codPedRsv">
+								<ewd:forEach sessionName="fixoCinzaArray" param1="$rowId" param2="2" param3="$rowId2" index="$rowId3" return="$etqRsv">
+									<span class="etqRsvNum"><?=$codPedRsv?> - <?=$etqRsv?></span>
+								</ewd:forEach>
+							</ewd:forEach>
+							</div>
+						</div>
+					</ewd:forEach>
+				</div>
+			</div>
+
+			<div class="cor_Box">
+				<div class="cor_Title">
+					<span class="title_ConsEstBox">Verde</span>
+				</div>
+				<div class="tipo_Box">
+					<div class="tipo_Box_Title">
+						<span class="title_ConsEstBox">Porta</span>
+					</div>
+					<ewd:forEach sessionName="portaVerdeArray" index="$rowId" return="$portaVerdeData">
+						<ewd:getSessionArrayValue sessionName="portaVerdeArray" param1="$rowId" param2="1" return="$portaVerdeEstData">
+						<ewd:getSessionArrayValue sessionName="portaVerdeArray" param1="$rowId" param2="2" return="$portaVerdeResData">
+						<ewd:getSessionArrayValue sessionName="portaVerdeArray" param1="$rowId" param2="3" return="$portaVerdeEmPData">
+						<div class="tam_Box larg_box_<?=$portaVerdeData?>">
+							<div id="tam_Verde_Porta_<?=$portaVerdeData?>" class="tam_Box_Box" onClick="switchRsvTrans('Verde','Porta',<?=$portaVerdeData?>);">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$portaVerdeData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Est">
+									<span>EM ESTOQUE:</span><span><?=$portaVerdeEstData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Res">
+									<span>RESERVADO:</span><span><?=$portaVerdeResData?></span>
+								</div>
+								<div class="tam_Box_Qnt_EmP">
+									<span>EM PRODUCAO:</span><span><?=$portaVerdeEmPData?></span>
+								</div>
+							</div>
+							<div id="etqRsv_Verde_Porta_<?=$portaVerdeData?>" class="etqRsv_Box larg_box_<?=$portaVerdeData?>">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$portaVerdeData?></span>
+								</div>
+							<ewd:forEach sessionName="portaVerdeArray" param1="$rowId" param2="2" index="$rowId2" return="$codPedRsv">
+								<ewd:forEach sessionName="portaVerdeArray" param1="$rowId" param2="2" param3="$rowId2" index="$rowId3" return="$etqRsv">
+									<span class="etqRsvNum"><?=$codPedRsv?> - <?=$etqRsv?></span>
+								</ewd:forEach>
+							</ewd:forEach>
+							</div>
+						</div>
+					</ewd:forEach>
+				</div>
+				<div class="tipo_Box">
+					<div class="tipo_Box_Title">
+						<span class="title_ConsEstBox">Fixo</span>
+					</div>
+					<ewd:forEach sessionName="fixoVerdeArray" index="$rowId" return="$fixoVerdeData">
+						<ewd:getSessionArrayValue sessionName="fixoVerdeArray" param1="$rowId" param2="1" return="$fixoVerdeEstData">
+						<ewd:getSessionArrayValue sessionName="fixoVerdeArray" param1="$rowId" param2="2" return="$fixoVerdeResData">
+						<ewd:getSessionArrayValue sessionName="fixoVerdeArray" param1="$rowId" param2="3" return="$fixoVerdeEmPData">
+						<div class="tam_Box larg_box_<?=$fixoVerdeData?>">
+							<div id="tam_Verde_Fixo_<?=$fixoVerdeData?>" class="tam_Box_Box" onClick="switchRsvTrans('Verde','Fixo',<?=$fixoVerdeData?>);">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$fixoVerdeData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Est">
+									<span>EM ESTOQUE:</span><span><?=$fixoVerdeEstData?></span>
+								</div>
+								<div class="tam_Box_Qnt_Res">
+									<span>RESERVADO:</span><span><?=$fixoVerdeResData?></span>
+								</div>
+								<div class="tam_Box_Qnt_EmP">
+									<span>EM PRODUCAO:</span><span><?=$fixoVerdeEmPData?></span>
+								</div>
+							</div>
+							<div id="etqRsv_Verde_Fixo_<?=$fixoVerdeData?>" class="etqRsv_Box larg_box_<?=$fixoVerdeData?>">
+								<div class="tam_Box_Box_Title">
+									<span class="tam_Box"><?=$fixoVerdeData?></span>
+								</div>
+							<ewd:forEach sessionName="fixoVerdeArray" param1="$rowId" param2="2" index="$rowId2" return="$codPedRsv">
+								<ewd:forEach sessionName="fixoVerdeArray" param1="$rowId" param2="2" param3="$rowId2" index="$rowId3" return="$etqRsv">
+									<span class="etqRsvNum"><?=$codPedRsv?> - <?=$etqRsv?></span>
+								</ewd:forEach>
+							</ewd:forEach>
+							</div>
+						</div>
+					</ewd:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

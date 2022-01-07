@@ -1,0 +1,66 @@
+<ewd:config pageType="ajax" publicPage="true" prePageScript="^Tabela" mgwsiServer="gtm">
+<ewd:ajaxOnload>
+ document.getElementById('Aguarde').innerHTML='';
+</ewd:ajaxonload>
+<ewd:ifSessionArrayExists sessionName="ResultSet">
+<table width="95%" align="center" border="1" cellpadding="5" cellspacing="0">
+<tr align="left" class="cabForm">
+<td colspan=9 align="right">
+<img src="/img/sair.png" height=16 alt="Fechar" align="absmiddle" event="onclick" targetID="<?=#painelTabela?>" ajaxPage="LimpaTabela.ewd"/>
+<?=#tituloTabela?>
+</td>
+</tr>
+<ewd:forEach sessionName="ResultSet" index="$rowNo" return="$rowData">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="1" return="$classe">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="2" return="$return">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="3" return="$indice">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="4" return="$dado1">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="5" return="$dado2">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="6" return="$dado3">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="7" return="$dado4">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="8" return="$dado5">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="9" return="$dado6">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="10" return="$dado7">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="11" return="$dado8">
+<tr class="<?=$classe?>">
+<ewd:if firstValue="$rowNo" operation=">" secondValue="0">
+<td><a href=javascript:Selecao('<?=$indice?>','<?=$return?>');><?=$indice?></a></td>
+<ewd:ifContains input="$dado1" substring="img/imagens">
+<td><img src="<?=$dado1?>?<?#Tpr?>" width="50" height="50" border="1"></td>
+<ewd:else>
+<td><?=$dado1?></td>
+</ewd:ifContains>
+<td><?=$dado2?></td>
+<td><?=$dado3?></td>
+<td><?=$dado4?></td>
+<td><?=$dado5?></td>
+<td><?=$dado6?></td>
+<td><?=$dado7?></td>
+<td><?=$dado8?></td>
+<ewd:else>
+<td><a event="onclick" targetID="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=Sort&col=1"><?=$indice?></a></td>
+<td><a event="onclick" targetID="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=Sort&col=2" eventPre="Aguarde()"><?=$dado1?></a></td>
+<td><a event="onclick" targetID="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=Sort&col=3"><?=$dado2?></a></td>
+<td><a event="onclick" targetID="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=Sort&col=4"><?=$dado3?></a></td>
+<td><a event="onclick" targetID="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=Sort&col=5"><?=$dado4?></a></td>
+<td><a event="onclick" targetID="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=Sort&col=6"><?=$dado5?></a></td>
+<td><a event="onclick" targetID="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=Sort&col=7"><?=$dado6?></a></td>
+<td><a event="onclick" targetID="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=Sort&col=8"><?=$dado7?></a></td>
+<td><a event="onclick" targetID="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=Sort&col=9"><?=$dado8?></a></td>
+</ewd:else>
+</ewd:if>
+</tr>
+</ewd:forEach>
+</table>
+<TABLE width="85%" border="0" align="center" cellpadding="0" cellspacing="0" ID="tabela">
+<TR class="rodForm">
+<TD width="4%">&nbsp;</TD>
+<TD width="2%"><div align="center"><img src="/img/first.png" width="16" height="16" alt="Primeira" event="onclick" targetid="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=navega&tps=first"  /></div></TD>
+<td width="2%"><div align="center"><img src="/img/previous.png" width="16" height="16" alt="Pagina anterior" event="onclick" targetid="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=navega&tps=prev"  /></div></td>
+<td width="25%" class=grupo><div align="left"><?=#pgAtu?> de <?=#pgFinal?>  páginas.</div></TD>
+<td width="2%"><div align="center"><img src="/img/next.png" width="16" height="16" alt="Pagina sucessiva" event="onclick" targetid="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=navega&tps=next"  /></div></TD>
+<td width="2%"><div align="center"><img src="/img/last.png" width="16" height="16" alt="Ultima" event="onclick" targetid="<?=#painelTabela?>" ajaxpage="TabAjax.ewd?Key=navega&tps=last" ></div></td>
+<td width="63%"><div align="left"><?=#itemAtu?> de <?=#itemFinal?> registros.</div></TD>
+</TR>
+</TABLE>
+</ewd:if>

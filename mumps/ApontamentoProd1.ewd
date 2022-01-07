@@ -1,0 +1,20 @@
+<ewd:config isFirstPage="False" mgwsiServer="gtm" pageType="ajax" prePageScript="operador^webApontamentoProd" cachePage="false" applyTemplate="false">
+<ewd:ajaxOnload>
+	document.getElementById('Aguarde').innerHTML='';
+	document.getElementById('operador').value='';
+	document.getElementById('operador').focus();
+	document.getElementById('codigo').value='';
+	document.getElementById('codigo').focus();
+</ewd:ajaxOnload>
+  <ewd:if FirstValue="#erro" Operation="=" SecondValue="1">
+   <?=#motivo?>
+  <ewd:else>
+  <form method="post" action="ewd" onSubmit="document.getElementById('aponta').click();document.getElementById('resultado').innerHTML = '';return false;">
+   <label>Etiqueta</label>
+   <input name="codigo" type="text" id="codigo" class="formRow" focus="true" autocomplete="off"/>
+   <input name="aponta" type="submit" id="aponta" value="aponta" class="formRow" ajax="true" targetID="resultado" nextPage="ApontamentoProd2" />
+  </form>
+  <p class="formRow">Operador: <?=#nomeOperador?></p>
+  <p class="formRow">Processo: <?=#desOper?></p>
+  </ewd:else>
+  </ewd:if>

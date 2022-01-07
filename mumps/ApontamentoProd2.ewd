@@ -1,0 +1,28 @@
+<ewd:config isFirstPage="false" mgwsiServer="gtm" prePageScript="apontamento^webApontamentoProd" cachePage="false" pageType="ajax" applyTemplate="false">
+<ewd:ajaxOnload>
+	document.getElementById('Aguarde').innerHTML='';
+	document.getElementById('codigo').value='';
+	document.getElementById('codigo').focus();
+</ewd:ajaxonload>
+<ewd:if firstValue="#erro" operation="=" secondValue="1">
+<div id="conteudo">
+ <div id="situacao"><?=#situacao?></div>
+</div>
+<ewd:else>
+<div id="conteudo">
+ Cliente: <?=#nomeCliente?>
+ <br>
+ Pedido: <?=#pedido?> | Etiqueta: <?=#codigo?>
+ <br>
+ Item: <?=#item?> de <?=#itens?> | Peça: <?=#peca?> de <?=#pecas?>
+ <br>
+ <b>Processo apontado: <?=#nomeServico?></b>
+ <div id="projeto">
+ <img src="<?=#arquivo?>" class="overlay1">
+ <img src="/img/ok.png" class="overlay2">
+ </div>
+ <div id="legenda"><b><?=#descricao?></b></div>
+ <div id="arquivo">Arquivo: <?=#arquivo?></div>
+</div>
+</ewd:else>
+</ewd:if>

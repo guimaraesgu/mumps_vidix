@@ -1,0 +1,42 @@
+<ewd:config isFirstPage="false" prePageScript="alteraCondPag1^webAlteraCondPag" cachePage="false" mgwsiServer="gtm" escapeText="true" pageType="ajax" applyTemplate="false">
+<ewd:ajaxOnload>
+	document.getElementById('Aguarde').innerHTML='';
+</ewd:ajaxonload>
+<div id="conteudo">
+<form id="alteraCondPag" name="alteraCondPag" method="post" action="ewd">
+<ewd:ifSessionArrayExists sessionName="ResultSet">
+<table width="90%" border=2 align="center" cellpadding="5" cellspacing="0" >
+<tr bgcolor="#CCCCCC" class="style3">
+<td width="4%" align="center">-</td>
+<td width="6%" align="center">Pedido</td>
+<td width="45%" align="left">Cliente</td>
+<td width="8%" align="center">Valor</td>
+<td width="20%" align="center">Condiçao de Pagamento</td>
+<td width="15%" align="center"><select name="condPagCli"></select></td>
+</tr>
+<ewd:forEach sessionName="ResultSet" index="$rowNo" return="$rowData">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="1" return="$classe">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="2" return="$sitPed">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="3" return="$pedido">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="4" return="$cdCliente">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="5" return="$nmCliente">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="6" return="$valor">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="7" return="$condPagPed">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="8" return="$codCondPagPed">
+<tr class="<?=$classe?>">
+<td><div align="center"><img src="/img/<?=$sitPed?>" height="24"/></div></td>
+<td><div align="center"><a href="#" onclick="carregaPedido('<?=$pedido?>')"><?=$pedido?></a></div></td>
+<td><div align="left"><a href="#" onclick="carregaFicha('<?=$cdCliente?>')"><?=$nmCliente?></a></div></td>
+<td><div align="right"><?=$valor?></div></td>
+<td><div align="center"><?=$condPagPed?></div></td>
+<td><div align="center"><input type=checkbox name="pedidos" value="<?=$pedido?>"></div></td>
+</tr>	
+</ewd:forEach>
+<td colspan=5 align="right" class="style3"><a onclick="javascript:checkAll('alteraCondPag',true);" href="javascript:void(0);">Marcar todos</a><br><a onclick="javascript:checkAll('alteraCondPag',false);" href="javascript:void(0);">Desmarcar todos</a></td>
+<td align="center"><input name="alterar" type="submit" id="alterar" value="Alterar Pedidos" tabindex="1" event="onClick" ajax="true" targetID="resultado" action="altera^webAlteraCondPag" confirm="true" confirmText="Confirma alteraçao?" nextpage="AlteraCondPag1"></td>
+</table>
+<ewd:else>
+<h3 align="center">Sem pedidos para o cliente!</h3>
+</ewd:if>
+</form>
+</div>

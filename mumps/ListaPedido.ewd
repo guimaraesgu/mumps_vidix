@@ -1,0 +1,128 @@
+<ewd:config isFirstPage="False" mgwsiServer="gtm" prePageScript="inicio^webListaPedido">
+<html>
+<head>
+<script type="text/javascript" src="/resources/svg.js"></script>
+<script type="text/javascript">
+	function toggleShowHideFunction() {
+	    var divClass = document.getElementsByClassName("tablePecaRow");
+	    var buttonValue = document.getElementById("analitico");
+	    for (i = 0; i < divClass.length; i++) {
+	    	if (divClass[i].style.display === "none") {
+				divClass[i].style.display = "inline-block";
+				buttonValue.value = "Sintetico";
+			} else {
+				divClass[i].style.display = "none";
+			 	buttonValue.value = "Analitico";
+			}
+	    }
+	}
+</script>
+</head>
+<body>
+	<div id="contentListaPedido">
+		<div id="sidebarDadosCadastrais">
+			<div id="clientTitle">
+				<p class="title_FichaClienteCod"><?=#codCli?></p>
+				<p class="title_FichaCliente"><?=#nomCli?></p>
+			</div>
+			<div class="clientData" id="clientContact">
+				<p class="subtitle_FichaCliente">Contato(s)</p>
+				<p class="paragraphFichaCliente"><span class="clientDataLabel">Telefone:</span><span class="clientDataSpan"><?=#numTel?></span></p>
+				<p class="paragraphFichaCliente"><span class="clientDataLabel">Contato:</span><span class="clientDataSpan"><?=#nomCont?></span></p>
+			</div>
+			<div class="clientData" id="clientContact">
+				<p class="subtitle_FichaCliente">Info Pedido</p>
+				<p class="paragraphFichaCliente">
+					<span class="clientDataLabel">Número:</span>
+					<span class="clientDataSpan"><?=#numPed?></span>
+				</p>
+				<p class="paragraphFichaCliente">
+					<span class="clientDataLabel">Valor:</span>
+					<span class="clientDataSpan"><?=#valorPedido?></span>
+				</p>
+				<p class="paragraphFichaCliente">
+					<span class="clientDataLabel">Condição Pagto:</span>
+					<span class="clientDataSpan"><?=#condPgto?></span>
+				</p>
+				<p class="paragraphFichaCliente">
+					<span class="clientDataLabel">Dt Emissão:</span>
+					<span class="clientDataSpan"><?=#dtEmissao?></span>
+				</p>
+				<p class="paragraphFichaCliente">
+					<span class="clientDataLabel">Dt Entrega:</span>
+					<span class="clientDataSpan"><?=#dtEntrega?></span>
+				</p>
+			</div>
+			<div class="clientData carret">
+				<input type="button" id="analitico" onClick="toggleShowHideFunction()" value="Analitico">
+			</div>
+		</div>		
+		<div id="contentPedidos">
+			<div id="tableItems">
+				<div class="tableTitle"><p class="title_FichaCliente">Itens do Pedido</p></div>
+				
+				<div class="tableItemsRow">
+					<div class="tableItemHeader itemIcon"><span class="embranco"></span></div>
+					<div class="tableItemHeader itemDesc">Descrição</div>
+					<div class="tableItemHeader itemDim">Dimensão</div>
+					<div class="tableItemHeader itemQnt">Quant.</div>
+					<div class="tableItemHeader itemQntApt">Apontado</div>
+					<div class="tableItemHeader itemQntQuebra">Quebra</div>
+				</div>
+				<ewd:forEach sessionName="itemsArray" index="$rowId" return="$itemsData">
+					<ewd:getPiece data="$itemsData" return="$flagPronto" asciiDelimiter="94" pieceNumber="1">
+					<ewd:getPiece data="$itemsData" return="$desc" asciiDelimiter="94" pieceNumber="2">
+					<ewd:getPiece data="$itemsData" return="$dimensao" asciiDelimiter="94" pieceNumber="3">
+					<ewd:getPiece data="$itemsData" return="$qntPed" asciiDelimiter="94" pieceNumber="4">
+					<ewd:getPiece data="$itemsData" return="$qntApont" asciiDelimiter="94" pieceNumber="5">
+					<ewd:getPiece data="$itemsData" return="$qntQuebra" asciiDelimiter="94" pieceNumber="6">
+					<div class="tableItemsRow">
+						<div class="tableItemContent itemIcon"><img class="flagPronto" src="<?=$flagPronto?>"></div>
+						<div class="tableItemContent itemDesc"><?=$desc?></div>
+						<div class="tableItemContent itemDim"><?=$dimensao?></div>
+						<div class="tableItemContent itemQnt"><?=$qntPed?></div>
+						<div class="tableItemContent itemQntApt"><?=$qntApont?></div>
+						<div class="tableItemContent itemQntQuebra"><?=$qntQuebra?></div>
+		            </div>
+					<ewd:forEach sessionName="itemsArray" param1="$rowId" index="$rowId2" return="$servData">
+		              	<ewd:getPiece data="$servData" return="$servico" asciiDelimiter="94" pieceNumber="1">
+		              	<ewd:getPiece data="$servData" return="$qntApt" asciiDelimiter="94" pieceNumber="2">
+		              	<div class="tableServRow">
+		                	<div class="tableItemContent serv"><?=$servico?></div>
+		                	<div class="tableItemContent servQntApt"><?=$qntApt?></div>
+		                </div>
+		              	<ewd:forEach sessionName="itemsArray" param1="$rowId" param2="$rowId2" index="$rowId3" return="$pecaData">
+			              	<ewd:getPiece data="$pecaData" return="$dtApt" asciiDelimiter="94" pieceNumber="1">
+			              	<ewd:getPiece data="$pecaData" return="$horaApt" asciiDelimiter="94" pieceNumber="2">
+			              	<ewd:getPiece data="$pecaData" return="$operador" asciiDelimiter="94" pieceNumber="3">
+			              	<ewd:getPiece data="$pecaData" return="$qntApt" asciiDelimiter="94" pieceNumber="4">
+			              	<ewd:getPiece data="$pecaData" return="$etiq" asciiDelimiter="94" pieceNumber="5">
+			              	<div class="tablePecaRow">
+			                	<div class="tableItemContent pecaDtApt"><?=$dtApt?></div>
+			                	<div class="tableItemContent pecaHoraApt"><?=$horaApt?></div>
+			                	<div class="tableItemContent pecaOperador"><?=$operador?></div>
+			                	<div class="tableItemContent pecaQntApt"><?=$qntApt?></div>
+			                	<div class="tableItemContent pecaEtiq"><?=$etiq?></div>
+			              	</div>
+			              	<ewd:forEach sessionName="itemsArray" param1="$rowId" param2="$rowId2" param3="$rowId3" index="$rowId4" return="$pecaQData">
+			              	<ewd:getPiece data="$pecaQData" return="$dtApt" asciiDelimiter="94" pieceNumber="1">
+			              	<ewd:getPiece data="$pecaQData" return="$horaApt" asciiDelimiter="94" pieceNumber="2">
+			              	<ewd:getPiece data="$pecaQData" return="$quebra" asciiDelimiter="94" pieceNumber="3">
+			              	<ewd:getPiece data="$pecaQData" return="$qntApt" asciiDelimiter="94" pieceNumber="4">
+			              	<ewd:getPiece data="$pecaQData" return="$peca" asciiDelimiter="94" pieceNumber="5">
+				              	<div class="tablePecaRow">
+				                	<div class="tableItemContent pecaDtApt"><?=$dtApt?></div>
+				                	<div class="tableItemContent pecaHoraApt"><?=$horaApt?></div>
+				                	<div class="tableItemContent pecaOperador"><?=$operador?></div>
+				                	<div class="tableItemContent pecaQuebra"><?=$quebra?></div>
+				                	<div class="tableItemContent pecaEtiq"><?=$peca?></div>
+				              	</div>
+				            </ewd:forEach>
+			            </ewd:forEach>
+		            </ewd:forEach>
+				</ewd:forEach>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

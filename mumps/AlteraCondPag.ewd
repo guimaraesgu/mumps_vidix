@@ -1,0 +1,43 @@
+<ewd:config isFirstPage="False" prePageScript="alteraCondPag^webAlteraCondPag" cachePage="false" mgwsiServer="gtm">
+<html>
+<head>
+<script language="javascript" type="text/javascript">
+function carregaPedido(ped) {
+ pagina='/cgi-bin/web?Action=^ListaPedido&TREL=A&LSERV=N&Pedido=' + ped;
+ window.open(pagina,"nome","fullscreen=yes");
+ }
+function carregaFicha(cliente) {
+ pagina='/cgi-bin/web?Action=^FT0501B&Limite=50&Cliente=' + cliente;
+ window.open(pagina,"nome","fullscreen=yes");
+ }
+function checkAll(formname, checktoggle)
+{
+  var checkboxes = new Array(); 
+  checkboxes = document[formname].getElementsByTagName('input');
+  for (var i=0; i<checkboxes.length; i++)  {
+    if (checkboxes[i].type == 'checkbox')   {
+      checkboxes[i].checked = checktoggle;
+    }
+  }
+}
+</script>
+</head>
+<body>
+<div id="content">
+  <div id="titulo">Altera Condiç&atildeo de Pagamento</div>
+  <div id="form">
+   <div id="formColuna1">
+    <div id="lista">
+    <form method="post" action="ewd" onSubmit="document.getElementById('consulta').click();return false;">
+     <select name="cliente" size="30" class="lista" focus="true"></select>
+     <input name="consulta" type="submit" id="consulta" class="lista" value="Busca Pedidos" ajax="true" action="alteraCondPag1^webAlteraCondPag" targetId="resultado" nextpage="AlteraCondPag1" />
+    </form>
+    </div>
+   </div>
+   <div id="formColuna234">   
+    <div id="resultado"></div>
+   </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<ewd:config isFirstPage="False" mgwsiServer="gtm">
+<html>
+<head>
+<script type="text/javascript" src="/resources/svg.js"></script>
+</head>
+<body>
+	<div id="titulo">Consulta Apontamento Por Pedido</div>
+	<form method="post" action="ewd">
+		<div id="form_ConsultaApontPedido">
+			<div id="consApontPed_Pedido">
+	        	<label for="pedido">Pedido</label>
+	        	<input type="text" id="pedido" name="pedido">
+        	</div>
+        	<div id="consApontPed_Etiqueta">
+        	<label for="etiqueta">Etiqueta</label>
+        	<input type="text" id="etiqueta" name="etiqueta">
+        	</div>
+        	<label for="listaServ">Lista Serviço</label>
+        	<input type="radio" id="listaServ" name="listaServ" value="true"> Sim
+            <input type="radio" id="listaServ" name="listaServ" value="false" checked> Não
+
+        	<input type="submit" name="consAptPed" id="form_Submit_consAptPed" class="form_Submit_consAptPed" value="Consulta" nextPage="ListaPedido"> 
+    	</div>
+    </form>
+</body>
+</html>

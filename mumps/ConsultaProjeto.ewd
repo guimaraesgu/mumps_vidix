@@ -1,0 +1,27 @@
+<ewd:config isFirstPage="False" mgwsiServer="gtm">
+<html>
+<head></head>
+<body>
+<div id="content">
+  <div id="titulo">
+    Consulta Projetos
+  </div>
+ <div id="form">
+  <div id="formColuna1">
+   <form method="post" action="ewd" onSubmit="document.getElementById('consulta').click();return false;">
+   <select name="tipoConsulta" class="formRow">
+   <option value="etiqueta">Etiqueta</option>
+   <option value="pedido">Pedido</option>
+   </select>
+   <input name="codigo" type="text" id="codigo" class="formRow" autocomplete="off" focus="true" />
+   <input name="consulta" type="submit" id="consulta" value="Consulta" class="formRow" targetID="seleciona" ajax="true" nextPage="ConsultaProjeto1">
+   </form>
+  <div id="seleciona"></div>
+  </div>
+  <div id="formColuna23">
+  <div id="resultado"></div>
+  </div>
+ </div>
+</div>
+</body>
+</html>

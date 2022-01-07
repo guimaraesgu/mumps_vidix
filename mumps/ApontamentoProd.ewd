@@ -1,0 +1,28 @@
+<ewd:config isFirstPage="False" mgwsiServer="gtm" cachePage="false" defaultTimeout="90000">
+<ewd:ajaxOnload>
+	document.getElementById('Aguarde').innerHTML='';
+	document.getElementById('operador').value='';
+	document.getElementById('operador').focus();
+</ewd:ajaxOnload>
+<html>
+<head></head>
+<div id="content">
+ <div id="titulo">
+  Apontamento de Produçao
+ </div>
+ <div id="form">
+  <div id="formColuna1">
+  <form method="post" action="ewd" onSubmit="document.getElementById('consulta').click();return false;">
+   <label>Operador</label>
+   <input name="operador" type="password" id="operador" class="formRow" focus="true" />
+   <input name="consulta" type="submit" id="consulta" class="formRow" value="consulta" ajax="true" targetid="seleciona" nextPage="ApontamentoProd1" />
+  </form>
+  <div id="seleciona"></div>
+  </div>
+  <div id="formColuna23">   
+   <div id="resultado"></div>
+  </div>
+ </div>
+</div>
+</body>
+</html>

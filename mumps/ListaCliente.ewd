@@ -1,0 +1,18 @@
+<ewd:config isFirstPage="False" mgwsiServer="gtm" prePageScript="lista^webListaCliente">
+<html>
+<head>
+<script type="text/javascript" src="/resources/svg.js"></script>
+</head>
+<body>
+	<div id="contentListaCliente">
+		<div id="titulo">Lista de Clientes</div>
+		<div id="form_ListaCliente">
+            <form method="post" action="ewd">
+				<select name="Cliente" class="form_Select_ListaCliente" size="15"></select>
+				
+				<input type="submit" class="form_Submit_ListaCliente" name="pesquisa" id="pesquisa" value="Consulta Ficha" nextPage="FichaCliente"/>
+            </form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<ewd:config isFirstPage="false" prePageScript="pre^PEDIDO6" cachePage="false" mgwsiServer="gtm">
+<html>
+<head>
+<script language="javascript" type="text/javascript">
+function carregaPedido(Ped) {
+ pagina='/cgi-bin/web?Action=^ListaPedido&TREL=A&LSERV=N&Pedido=' + Ped;
+ window.open(pagina,"nome","fullscreen=yes");
+}
+
+function checkAllBoxes(formname){
+  var checkboxes = new Array(); 
+  checkboxes = document[formname].getElementsByClassName('liberaCheck');
+  mainCheckbox = document.getElementById("mainCheckbox");
+  if( mainCheckbox.checked == true){
+	for (var i=0; i<checkboxes.length; i++)  {
+	    checkboxes[i].checked = true;
+  	}
+  }else{
+  	for (var i=0; i<checkboxes.length; i++)  {
+	    checkboxes[i].checked = false;
+  	}
+  }
+}
+</script>
+</head>
+<form id="liberaPedidos" name="liberaPedidos" method="post" action="ewd">
+<ewd:ifSessionArrayExists sessionName="ResultSet">
+<body>
+<div id="titulo">Libera Pedidos Bloqueados</div>
+<div id="resultado"></div>
+<table width="85%" border=2 align="center" cellpadding="0" cellspacing="0" >
+<tr bgcolor="#CCCCCC">
+<td width="10%" align="center"><strong>Pedido</strong></td>
+<td width="60%"><div align="center"><strong>Cliente</strong></div></td>
+<td width="20%"><div align="right"><strong>Valor</strong></div></td>
+<td width="10%"><div align="center"><input type="checkbox" id="mainCheckbox" onClick="checkAllBoxes('liberaPedidos');" /></div></td>
+</tr>
+<ewd:forEach sessionName="ResultSet" index="$rowNo" return="$rowData">
+  <ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="1" return="$classe">
+  <ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="2" return="$pedido">
+  <ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="3" return="$cdCliente">
+  <ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="4" return="$nmCliente">
+  <ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="5" return="$valor">
+  <ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="6" return="$campo6">
+    <tr class="<?=$classe?>">
+    <td align="center"><a href="ListaPedido.ewd?pedido=<?=$pedido?>&listaServ=true"><?=$pedido?></a></td>
+    <td><a href="FichaCliente.ewd?Cliente=<?=$cdCliente?>"><?=$nmCliente?></a></td>
+    <td><div align="right"><?=$valor?></div></td>
+    <td width="10%" align="right"><div align="center"><input type="checkbox" class="liberaCheck" name="Pedidos" value=<?=$pedido ?>></div></td>
+    </tr>
+</ewd:forEach>
+<td colspan=3 align="right" class="style3">
+</td>	
+<td align="center"><input name="Gravar" type="submit" id="Gravar" value="Liberar Pedidos" tabindex="1" action="gravar^PEDIDO6" confirm="true" event="onclick" eventpre="Aguarde()" onclick="Aguarde()" confirmText="Confirma liberaçao?" nextPage="LiberaPedidos.ewd"></td>
+</table>
+</BODY>
+<ewd:else>
+<h3 align="center">Sem pedidos para liberar!</h3>
+</ewd:if>
+</form>
+</HTML>

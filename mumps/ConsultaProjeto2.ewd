@@ -1,0 +1,23 @@
+<ewd:config isFirstPage="False" mgwsiServer="gtm" pageType="ajax" applyTemplate="false">
+<ewd:ajaxOnload>
+	document.getElementById('Aguarde').innerHTML='';
+	document.getElementById('codigo').value='';
+	document.getElementById('codigo').focus();
+</ewd:ajaxonload>
+<ewd:if firstValue="#erro" operation="=" secondValue="1">
+  <div id="conteudo">
+   Atencao: <?=#situacao?>
+  </div>
+<ewd:else>
+  <div id="conteudo">
+   Cliente: <?=#cliente?>
+   <br>
+   Pedido: <?=#pedido?> | Etiqueta: <?=#codigo?> | Item: <?=#item?>
+   <div id="projeto">
+    <img src=<?=#arquivo?> class="overlay1">
+   </div>
+   <div id="legenda"><b><?=#descricao?></b></div>
+   <div id="arquivo"> Arquivo: <?=#arquivo?></div>
+  </div>
+</ewd:else>
+</ewd:if>

@@ -1,0 +1,25 @@
+<ewd:config pageType="ajax" mgwsiServer="gtm" cachePage="false" prePageScript="consultaProjeto^webConsultaProjeto" applyTemplate="false">
+<ewd:ajaxOnload>
+	if (document.getElementById('tipoConsulta').value == 'etiqueta'){document.getElementById('buscaProjeto').click();} 
+	else {document.getElementById('resultado').innerHTML = '';};
+	document.getElementById('Aguarde').innerHTML = '';
+	document.getElementById('codigo').value = '';
+	document.getElementById('codigo').focus();
+</ewd:ajaxOnload>
+<ewd:if firstValue="#tipoConsulta" operation="=" secondValue="etiqueta">
+  <div id="conteudo">
+  <input type="button" name="buscaProjeto" class="lista" value="Item: <?=#item?> | <?=#nomeItem?>" event="onClick" ajaxPage="ConsultaProjeto2.ewd?pedido=<?=#pedido?>&item=<?=#item?>&nomeItem=<?=#nomeItem?>&descricao=<?=#descricao?>&arquivo=<?=#arquivo?>" targetID="resultado" />
+  </div>
+<ewd:else>
+<div id="conteudo">
+<ewd:forEach sessionName="ResultSet" index="$rowNo" return="$rowData">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="1" return="$pedido">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="2" return="$item">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="3" return="$descricao">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="4" return="$cliente">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="5" return="$arquivo">
+<ewd:getPiece data="$rowData" asciiDelimiter="94" pieceNumber="6" return="$nomeItem">
+<input type="button" name="buscaProjeto" class="lista" value="Item: <?=$item?> | <?=$nomeItem?>" event="onClick" ajaxPage="ConsultaProjeto2.ewd?cliente=<?=$cliente?>&pedido=<?=$pedido?>&item=<?=$item?>&nomeItem=<?=$nomeItem?>&descricao=<?=$descricao?>&arquivo=<?=$arquivo?>" targetID="resultado">
+</ewd:forEach>
+</div>
+</ewd:if>

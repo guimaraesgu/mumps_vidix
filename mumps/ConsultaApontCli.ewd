@@ -1,0 +1,19 @@
+<ewd:config isFirstPage="False" mgwsiServer="gtm" prePageScript="inicio^webConsultaApontCli">
+<html>
+	<head>
+	</head>
+	<body>
+		<div id="contentListaApontCli">
+			<div id="titulo">Consulta Apontamento Por Cliente</div>
+            <form method="post" action="ewd">
+            	<div id="form_ConsultaApontPedidoCli">
+					<select name="Cliente" class="form_Select_ListaCliente" size="15"></select>
+		        	<label for="listaServ">Lista Serviço</label>
+		        	<input type="radio" id="listaServ" name="listaServ" value="true"> Sim
+		            <input type="radio" id="listaServ" name="listaServ" value="false" checked> Não
+					<input type="submit" name="consAptPed" id="form_Submit_consAptPed" class="form_Submit_consAptPed" value="Consulta" nextPage="ListaPedidosCli"> 
+				</div>
+            </form>
+		</div>
+	</body>
+</html>
